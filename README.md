@@ -29,9 +29,7 @@ This is a lightweight HTTP file server built using Node.js core modules. It allo
    cd your-repo-name
 Start the server:
 
-bash
-Copy
-Edit
+```bash
 node server.js
 Open your browser or use curl to interact with the server:
 
