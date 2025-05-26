@@ -1,35 +1,39 @@
-📁 Node.js HTTP File Server
-This is a simple HTTP file server built using Node.js core modules. It supports basic file system operations via standard HTTP methods: GET, PUT, and DELETE.
+# 📁 Node.js HTTP File Server
 
-🚀 Features
-GET:
+This is a lightweight HTTP file server built using Node.js core modules. It allows you to upload, read, and delete files using standard HTTP methods (`GET`, `PUT`, `DELETE`). All file access is safely restricted to the working directory.
 
-Reads files and streams their contents
+---
 
-Lists contents of directories
+## 🚀 Features
 
-PUT:
+- **GET** requests:
+  - Stream file contents
+  - List directory contents
 
-Uploads new files or overwrites existing ones
+- **PUT** requests:
+  - Upload new files
+  - Overwrite existing files
 
-DELETE:
+- **DELETE** requests:
+  - Remove files or directories
 
-Removes files or directories
+- 🔒 Prevents access to files outside the base directory
 
-Access restriction:
+---
 
-Files outside the base working directory are protected (403 Forbidden)
+## 🛠️ Setup
 
-🛠️ Setup
-Clone or download the project.
-
-Run the server with:
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+Start the server:
 
 bash
 Copy
 Edit
 node server.js
-Visit or interact with:
+Open your browser or use curl to interact with the server:
 
 arduino
 Copy
@@ -39,14 +43,14 @@ http://localhost:8000/
 bash
 Copy
 Edit
-# Try to read a non-existent file
+# Try to access a file that doesn't exist
 $ curl http://localhost:8000/file.txt
 File not found
 
-# Upload a file with some content
+# Upload a file with content
 $ curl -X PUT -d CONTENT http://localhost:8000/file.txt
 
-# Read the newly created file
+# Read the uploaded file
 $ curl http://localhost:8000/file.txt
 CONTENT
 
@@ -56,15 +60,19 @@ $ curl -X DELETE http://localhost:8000/file.txt
 # Confirm deletion
 $ curl http://localhost:8000/file.txt
 File not found
-📦 Tech Stack
-Node.js http, fs, path
+📦 Dependencies
+Node.js (uses built-in modules only)
 
-mime-types for content-type detection
+mime-types
 
-🔐 Security
-Only files inside the base directory (process.cwd()) are accessible
+🧠 How It Works
+The server listens on port 8000.
 
-Requests attempting to escape this directory are blocked with a 403 Forbidden status
+It uses the URL path to resolve file system paths.
+
+All file paths are sandboxed to the base directory (process.cwd()).
+
+File operations are handled with async functions and stream piping.
 
 📄 License
-MIT (or specify your preferred license)
+MIT License – Feel free to use, modify, and distribute.
